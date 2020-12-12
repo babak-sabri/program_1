@@ -1,0 +1,138 @@
+swagger: "3.0"
+info:
+  description: "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters."
+  version: "1.0.0"
+  title: "Program 1 api"
+  termsOfService: "http://localcost"
+  contact:
+    email: "sabri.babak@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "http://localcost"
+basePath: "/api/"
+openapi: 3.0.0
+tags:
+- name: "Swagger Editor"
+  description: "Access to Petstore orders"
+schemes:
+- "https"
+- "http"
+paths:
+  /api/user:
+    get:
+      summary: return all the users which are active and have an Austrian citizenship
+      description: return all the users which are active and have an Austrian citizenship
+      tags: 
+        - User
+      parameters:
+      responses: 
+        200:
+          description: response result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserItems'
+        500:
+          description: internal server error
+        422:
+          description: Unprocessable entity
+  /api/user/{userId}:
+    delete:
+      summary: Delete a user
+      description: Delete a user
+      tags: 
+        - User
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          description: id of user
+          schema:
+            type: integer
+      responses: 
+        200:
+          description: user has deleted
+        500:
+          description: internal server error
+        403:
+          description: User has details record
+        404:
+          description: User not found
+  /api/user/{userId}/details:
+    put:
+      summary: update user details
+      description: update user details
+      tags: 
+        - User
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          description: id of user
+          schema:
+            type: integer
+        - in: query
+          name: citizenship_country_id
+          description: citizenship country id
+          schema:
+            type: integer
+        - in: query
+          name: first_name
+          description: first name
+          schema:
+            type: string
+        - in: query
+          name: last_name
+          description: last name
+          schema:
+            type: string
+        - in: query
+          name: phone_number
+          description: phone number
+          schema:
+            type: string
+      responses: 
+        200:
+          description: user has updated
+        500:
+          description: internal server error
+        422:
+          description: unprocessable entity
+        404:
+          description: User details record not found
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+components:
+  schemas:
+    UserItems:
+      type: array
+      items:
+        $ref: '#/components/schemas/UserItem'
+    UserItem:
+      type: object
+      properties:
+        id:
+          description: user id
+          type: integer
+        email:
+          description: user email
+          type: string
+        active:
+          description: active code
+          type: integer
+          enum:
+            - 0
+            - 1
+        created_at:
+          description: user creation time
+          type: string
+          format: datetime
+        updated_at:
+          description: user modification time
+          type: string
+          format: datetime
+

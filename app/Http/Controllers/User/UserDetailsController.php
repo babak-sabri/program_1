@@ -11,10 +11,10 @@ class UserDetailsController extends Controller
 {
 	/**
 	 * update user details
-	 * 
+	 *
 	 * @param UpdateDetailsRequest $request
 	 * @param UserDetails $userDetail bind UserDetails based on the user id
-	 * @return mixed
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response|mixed
 	 */
 	public function update(UpdateDetailsRequest $request, UserDetails $userDetail)
 	{

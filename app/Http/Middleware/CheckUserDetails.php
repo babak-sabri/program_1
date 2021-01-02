@@ -11,7 +11,7 @@ class CheckUserDetails
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @param  \Closure  $next
-	 * @return mixed
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response|mixed
 	 */
 	public function handle($request, Closure $next)
 	{

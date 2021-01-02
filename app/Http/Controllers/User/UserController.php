@@ -8,10 +8,12 @@ use App\Models\User\User;
 
 class UserController extends Controller
 {
-	/**
-	 * get active Austrian citizenship 
-	 * @return type
-	 */
+    /**
+     *
+     * get active Austrian citizenship
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
 	public function index()
 	{
 		try {
@@ -24,13 +26,13 @@ class UserController extends Controller
 			return response('', Response::HTTP_INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	/**
 	 * destroy user if do not have details record
 	 * It is being checked by CheckUserDetails middleware
-	 * 
+	 *
 	 * @param User $user
-	 * @return mixed
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
 	 */
 	public function destroy(User $user)
 	{
